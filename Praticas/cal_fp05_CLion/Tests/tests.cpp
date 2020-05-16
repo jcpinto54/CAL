@@ -89,39 +89,39 @@ void checkSinglePath(vector<T> path, string expected) {
  */
 
  //Uncomment the test below...
-//TEST(CAL_FP05, test_unweightedShortestPath) {
-//    Graph<int> myGraph = CreateTestGraph();
-//
-//    myGraph.unweightedShortestPath(3);
-//    checkAllPaths(myGraph, "1<-3|2<-1|3<-|4<-1|5<-2|6<-3|7<-4|");
-//    checkSinglePath(myGraph.getPathTo(7), "3 1 4 7 ");
-//
-//    myGraph.unweightedShortestPath(5);
-//    checkSinglePath(myGraph.getPathTo(6), "5 7 6 ");
-//}
+TEST(CAL_FP05, test_unweightedShortestPath) {
+    Graph<int> myGraph = CreateTestGraph();
 
-//
-//
-////Uncomment the test below...
-//TEST(CAL_FP05, test_dijkstra) {
-//    Graph<int> myGraph = CreateTestGraph();
-//
-//    myGraph.dijkstraShortestPath(3);
-//    checkAllPaths(myGraph, "1<-3|2<-1|3<-|4<-2|5<-4|6<-3|7<-5|");
-//
-//    myGraph.dijkstraShortestPath(1);
-//    checkAllPaths(myGraph, "1<-|2<-1|3<-4|4<-2|5<-4|6<-4|7<-5|");
-//    checkSinglePath(myGraph.getPathTo(7), "1 2 4 5 7 ");
-//
-//    myGraph.dijkstraShortestPath(5);
-//    checkSinglePath(myGraph.getPathTo(6), "5 7 6 ");
-//
-//    myGraph.dijkstraShortestPath(7);
-//    checkSinglePath(myGraph.getPathTo(1), "7 6 4 3 1 ");
-//}
-//
-//
-//
+    myGraph.unweightedShortestPath(3);
+    checkAllPaths(myGraph, "1<-3|2<-1|3<-|4<-1|5<-2|6<-3|7<-4|");
+    checkSinglePath(myGraph.getPathTo(7), "3 1 4 7 ");
+
+    myGraph.unweightedShortestPath(5);
+    checkSinglePath(myGraph.getPathTo(6), "5 7 6 ");
+}
+
+
+
+//Uncomment the test below...
+TEST(CAL_FP05, test_dijkstra) {
+    Graph<int> myGraph = CreateTestGraph();
+
+    myGraph.dijkstraShortestPath(3);
+    checkAllPaths(myGraph, "1<-3|2<-1|3<-|4<-2|5<-4|6<-3|7<-5|");
+
+    myGraph.dijkstraShortestPath(1);
+    checkAllPaths(myGraph, "1<-|2<-1|3<-4|4<-2|5<-4|6<-4|7<-5|");
+    checkSinglePath(myGraph.getPathTo(7), "1 2 4 5 7 ");
+
+    myGraph.dijkstraShortestPath(5);
+    checkSinglePath(myGraph.getPathTo(6), "5 7 6 ");
+
+    myGraph.dijkstraShortestPath(7);
+    checkSinglePath(myGraph.getPathTo(1), "7 6 4 3 1 ");
+}
+
+
+
 //  //Uncomment the test below...
 //TEST(CAL_FP05, test_performance_dijkstra) {
 //    for (int n = 10; n <= 100; n += 10) {
@@ -159,6 +159,7 @@ void checkSinglePath(vector<T> path, string expected) {
 //
 //
 //
+
  //Uncomment the test below...
 TEST(CAL_FP05, test_floydWarshall) {
     Graph<int> myGraph = CreateTestGraph();

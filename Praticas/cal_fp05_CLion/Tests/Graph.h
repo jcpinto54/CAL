@@ -23,27 +23,27 @@ template <class T> class Vertex;
 
 template <class T>
 class Vertex {
-	T info;						// content of the vertex
-	vector<Edge<T> > adj;		// outgoing edges
-	
-	double dist = 0;
-	Vertex<T> *path = NULL;
-	int queueIndex = 0; 		// required by MutablePriorityQueue
+    T info;						// content of the vertex
+    vector<Edge<T> > adj;		// outgoing edges
 
-	bool visited = false;		// auxiliary field
-	bool processing = false;	// auxiliary field
+    double dist = 0;
+    Vertex<T> *path = NULL;
+    int queueIndex = 0; 		// required by MutablePriorityQueue
 
-	void addEdge(Vertex<T> *dest, double w);
+    bool visited = false;		// auxiliary field
+    bool processing = false;	// auxiliary field
+
+    void addEdge(Vertex<T> *dest, double w);
 
 public:
-	Vertex(T in);
-	T getInfo() const;
-	double getDist() const;
-	Vertex *getPath() const;
+    Vertex(T in);
+    T getInfo() const;
+    double getDist() const;
+    Vertex *getPath() const;
 
-	bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
-	friend class Graph<T>;
-	friend class MutablePriorityQueue<Vertex<T>>;
+    bool operator<(Vertex<T> & vertex) const; // // required by MutablePriorityQueue
+    friend class Graph<T>;
+    friend class MutablePriorityQueue<Vertex<T>>;
 };
 
 
@@ -56,39 +56,39 @@ Vertex<T>::Vertex(T in): info(in) {}
  */
 template <class T>
 void Vertex<T>::addEdge(Vertex<T> *d, double w) {
-	adj.push_back(Edge<T>(d, w));
+    adj.push_back(Edge<T>(d, w));
 }
 
 template <class T>
 bool Vertex<T>::operator<(Vertex<T> & vertex) const {
-	return this->dist < vertex.dist;
+    return this->dist < vertex.dist;
 }
 
 template <class T>
 T Vertex<T>::getInfo() const {
-	return this->info;
+    return this->info;
 }
 
 template <class T>
 double Vertex<T>::getDist() const {
-	return this->dist;
+    return this->dist;
 }
 
 template <class T>
 Vertex<T> *Vertex<T>::getPath() const {
-	return this->path;
+    return this->path;
 }
 
 /********************** Edge  ****************************/
 
 template <class T>
 class Edge {
-	Vertex<T> * dest;      // destination vertex
-	double weight;         // edge weight
+    Vertex<T> * dest;      // destination vertex
+    double weight;         // edge weight
 public:
-	Edge(Vertex<T> *d, double w);
-	friend class Graph<T>;
-	friend class Vertex<T>;
+    Edge(Vertex<T> *d, double w);
+    friend class Graph<T>;
+    friend class Vertex<T>;
 };
 
 template <class T>
@@ -99,37 +99,38 @@ Edge<T>::Edge(Vertex<T> *d, double w): dest(d), weight(w) {}
 
 template <class T>
 class Graph {
-	vector<Vertex<T> *> vertexSet;    // vertex set
+    vector<Vertex<T> *> vertexSet;    // vertex set
 
     vector<vector<double>> dist;
     vector<vector<Vertex<T>*>> pred;
+
 public:
-	Vertex<T> *findVertex(const T &in) const;
-	bool addVertex(const T &in);
-	bool addEdge(const T &sourc, const T &dest, double w);
-	int getNumVertex() const;
-	vector<Vertex<T> *> getVertexSet() const;
+    Vertex<T> *findVertex(const T &in) const;
+    bool addVertex(const T &in);
+    bool addEdge(const T &sourc, const T &dest, double w);
+    int getNumVertex() const;
+    vector<Vertex<T> *> getVertexSet() const;
 
-	// Fp05 - single source
-	void unweightedShortestPath(const T &s);    //TODO...
-	void dijkstraShortestPath(const T &s);      //TODO...
-	void bellmanFordShortestPath(const T &s);   //TODO...
-	vector<T> getPathTo(const T &dest) const;   //TODO...
+    // Fp05 - single source
+    void unweightedShortestPath(const T &s);    //TODO...
+    void dijkstraShortestPath(const T &s);      //TODO...
+    void bellmanFordShortestPath(const T &s);   //TODO...
+    vector<T> getPathTo(const T &dest) const;   //TODO...
 
-	// Fp05 - all pairs
-	void floydWarshallShortestPath();   //TODO...
-	vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;   //TODO...
+    // Fp05 - all pairs
+    void floydWarshallShortestPath();   //TODO...
+    vector<T> getfloydWarshallPath(const T &origin, const T &dest) const;   //TODO...
 
 };
 
 template <class T>
 int Graph<T>::getNumVertex() const {
-	return vertexSet.size();
+    return vertexSet.size();
 }
 
 template <class T>
 vector<Vertex<T> *> Graph<T>::getVertexSet() const {
-	return vertexSet;
+    return vertexSet;
 }
 
 /*
@@ -137,10 +138,10 @@ vector<Vertex<T> *> Graph<T>::getVertexSet() const {
  */
 template <class T>
 Vertex<T> * Graph<T>::findVertex(const T &in) const {
-	for (auto v : vertexSet)
-		if (v->info == in)
-			return v;
-	return NULL;
+    for (auto v : vertexSet)
+        if (v->info == in)
+            return v;
+    return NULL;
 }
 
 /*
@@ -149,10 +150,10 @@ Vertex<T> * Graph<T>::findVertex(const T &in) const {
  */
 template <class T>
 bool Graph<T>::addVertex(const T &in) {
-	if ( findVertex(in) != NULL)
-		return false;
-	vertexSet.push_back(new Vertex<T>(in));
-	return true;
+    if ( findVertex(in) != NULL)
+        return false;
+    vertexSet.push_back(new Vertex<T>(in));
+    return true;
 }
 
 /*
@@ -162,12 +163,12 @@ bool Graph<T>::addVertex(const T &in) {
  */
 template <class T>
 bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
-	auto v1 = findVertex(sourc);
-	auto v2 = findVertex(dest);
-	if (v1 == NULL || v2 == NULL)
-		return false;
-	v1->addEdge(v2,w);
-	return true;
+    auto v1 = findVertex(sourc);
+    auto v2 = findVertex(dest);
+    if (v1 == NULL || v2 == NULL)
+        return false;
+    v1->addEdge(v2,w);
+    return true;
 }
 
 
@@ -175,35 +176,29 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 
 template<class T>
 void Graph<T>::unweightedShortestPath(const T &orig) {
-    for (auto v : vertexSet)
-    {
-        v->dist = INF;
-        v->path = nullptr;
+    // TODO
+    Vertex<T> *src = findVertex(orig), *v;
+
+    for (auto ver : vertexSet) {
+        ver->dist = INT64_MAX;
+        ver->path = NULL;
     }
 
-    auto s = findVertex(orig);
-    s->dist = 0;
+    src->dist = 0;
+    queue<Vertex<T>*> Q;
+    Q.push(src);
 
-    queue<Vertex<T> *> q;
-
-    q.push(s);
-
-    while (!q.empty())
-    {
-        auto v = q.front();
-
-        q.pop();
-
-        for (auto &e : v->adj)
-        {
-            auto w = e.dest;
-
-            if (v->dist + 1 < w->dist)
-            {
-                w->dist = v->dist + 1;
-                w->path = v;
-                q.push(w);
+    while (!Q.empty()) {
+        v = Q.front();
+        Q.pop();
+        typename vector<Edge<T>>::const_iterator it2 = v->adj.begin();
+        while (it2 != v->adj.end()) {
+            if ((*it2).dest->dist == INT64_MAX) {
+                Q.push((*it2).dest);
+                (*it2).dest->dist = v->dist + 1;
+                (*it2).dest->path = v;
             }
+            it2++;
         }
     }
 }
@@ -211,34 +206,68 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
 
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &origin) {
-	// TODO
+    // TODO
+
+    for (auto ver : vertexSet) {
+        ver->dist = INT_MAX;
+        ver->path = NULL;
+    }
+
+    Vertex<T> *src = findVertex(origin), *v;
+    src->dist = 0;
+    MutablePriorityQueue<Vertex<T>> Q;
+    Q.insert(src);
+
+    while (!Q.empty()) {
+        v = Q.extractMin();
+        typename vector<Edge<T>>::const_iterator it2 = v->adj.begin();
+        while (it2 != v->adj.end()) {
+            if ((*it2).dest->dist > v->dist + (*it2).weight) {
+                (*it2).dest->dist = v->dist + (*it2).weight;
+                (*it2).dest->path = v;
+                if (!Q.inQueue((*it2).dest))
+                    Q.insert((*it2).dest);
+                else
+                    Q.decreaseKey((*it2).dest);
+            }
+            it2++;
+        }
+    }
+
 }
 
 
 template<class T>
 void Graph<T>::bellmanFordShortestPath(const T &orig) {
-	// TODO
+    // TODO
 }
 
 
 template<class T>
 vector<T> Graph<T>::getPathTo(const T &dest) const{
-	vector<T> res;
-	// TODO
-	return res;
+    vector<T> res;
+
+    Vertex<T> *v = findVertex(dest);
+    res.insert(res.begin(), v->info);
+
+    do {
+        v = v->path;
+        res.insert(res.begin(), v->info);
+    } while (v->path != NULL);
+
+    return res;
 }
 
 
 
 /**************** All Pairs Shortest Path  ***************/
-
 template<class T>
 void Graph<T>::floydWarshallShortestPath() {
-	// TODO
+    // TODO
     dist.clear();
     dist = vector<vector<double>>(vertexSet.size(), vector<double>(vertexSet.size(), INT64_MAX));
     pred.clear();
-    pred = vector<vector<Vertex<T>*>>(vertexSet.size(), vector<Vertex<T>>(vertexSet.size(), NULL));
+    pred = vector<vector<Vertex<T>*>>(vertexSet.size(), vector<Vertex<T>*>(vertexSet.size(), NULL));
 
     // Build dist matrix
     int i = 0, j = 0;
@@ -277,6 +306,7 @@ void Graph<T>::floydWarshallShortestPath() {
 template<class T>
 vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
     vector<T> res;
+    // TODO
     int srcIndex, destIndex;
 
     for (int i = 0; i < vertexSet.size(); i++) {
@@ -300,6 +330,5 @@ vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
 
     return res;
 }
-
 
 #endif /* GRAPH_H_ */

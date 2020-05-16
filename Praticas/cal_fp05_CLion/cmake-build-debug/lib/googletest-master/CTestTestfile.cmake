@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/joao/Documents/CAL/Praticas/cal_fp05_CLion/lib/googletest-master
-# Build directory: /home/joao/Documents/CAL/Praticas/cal_fp05_CLion/cmake-build-debug/lib/googletest-master
+# Source directory: /Users/afonsocaiado/Desktop/FACULDADE/ANO2/SEM2/CAL/PROJETO/RepoPinto/CAL/Praticas/cal_fp05_CLion/lib/googletest-master
+# Build directory: /Users/afonsocaiado/Desktop/FACULDADE/ANO2/SEM2/CAL/PROJETO/RepoPinto/CAL/Praticas/cal_fp05_CLion/cmake-build-debug/lib/googletest-master
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
